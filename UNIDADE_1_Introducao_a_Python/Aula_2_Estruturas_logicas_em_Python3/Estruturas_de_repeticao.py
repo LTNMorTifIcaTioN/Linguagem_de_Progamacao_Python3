@@ -2,7 +2,7 @@
 Veja a construção do comando while na entrada 6 (In [6]). Na linha 1, criamos uma variável chamada número com valor 1.
 Na linha 2 criamos a estrutura de repetição, veja que o comando while possui uma condição:
 o número tem que ser diferente de zero para o bloco executar.
-Todo o bloco com a indentação de uma tabulação (4 espaços) faz parte da estrutura de repetição.
+Tod_o o bloco com a indentação de uma tabulação (4 espaços) faz parte da estrutura de repetição.
 Lembre: todos os blocos de comandos em Python são controlados pela indentação.
 """
 
