@@ -24,7 +24,7 @@ Delete - Ao inserir um registro no banco, pode ser necessário removê-lo no fut
 o que pode ser feito por meio da instrução SQL DELETE.
 """
 
-# Só é preciso importar a biblioteca uma vez. Importamos novamente para manter todo o código em uma única célula
+# Só é preciso importar a biblioteca uma vez. Importamos novamente para manter to_do o código em uma única célula
 
 import sqlite3
 
