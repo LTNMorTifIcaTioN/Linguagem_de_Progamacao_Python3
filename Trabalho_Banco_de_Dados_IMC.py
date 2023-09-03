@@ -128,15 +128,15 @@ while option != 9:
             imc = calcular_imc(peso, altura)
             print("\nO seu IMC é: \n", imc)
             salvar = input('\nSalvar dados? s/n: ')
-            while salvar != 's' or 'S' or 'n' or 'N':
-                if salvar == 's' or 'S':
+            while str() in salvar:
+                if 's' in salvar or 'S' in salvar:
                     salvar_dados(nome, peso, altura)
                     break
-                elif salvar == 'n' or 'N':
+                elif 'n' in salvar or 'N' in salvar:
                     break
                 else:
                     print("Opção inválida. Por favor, tente novamente.")
-            pass
+                    salvar = input('\nSalvar dados? s/n: ')
         except:
             print('Erro de Sintaxe, tente novamente!')
             pass
