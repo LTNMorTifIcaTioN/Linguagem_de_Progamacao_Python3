@@ -2,6 +2,8 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import numpy as np
+from datetime import datetime
+import pytz
 
 print(f'\033[1m C   O   N   T   R   O   L   E      D   E      I   M   C \033[0m\n ')
 print(f'Projeto de Algoritmos em Python, Desenvolvido por Nayan Couto, Blumenau-SC em 2023\n')
@@ -20,8 +22,12 @@ def salvar_dados(nome, peso, altura):
     except FileNotFoundError:
         df = pd.DataFrame()
 
+    # Obter a data e hora atual em UTC-3 Brasil
+    tz = pytz.timezone('America/Sao_Paulo')
+    data_hora = datetime.now(tz).date().strftime('%Y%m%d')
+
     # Criar um dicionário com os novos dados
-    novo_dado = {'Nome': nome, 'Peso': peso, 'Altura': altura, 'IMC': imc}
+    novo_dado = {'Nome': nome, 'Peso': peso, 'Altura': altura, 'IMC': imc, 'Data': int(data_hora)}
 
     # Adicionar os novos dados ao DataFrame existente
     novo_df = pd.DataFrame(novo_dado, index=[0])
@@ -81,15 +87,15 @@ def plot_histograma_dispersao_estatisticas():
         print("Nenhum dado registrado para exibir o histograma de dispersão e as estatísticas.")
     else:
         # Plotar o histograma de dispersão
-        plt.scatter(df['Peso'], df['Altura'])
-        plt.xlabel('Peso')
-        plt.ylabel('Altura')
+        plt.scatter(df['Data'], df['IMC'])
+        plt.xlabel('Data')
+        plt.ylabel('IMC')
         plt.title('Histograma de Dispersão')
 
         # Adicionar uma linha de tendência
-        z = np.polyfit(df['Peso'], df['Altura'], 1)
+        z = np.polyfit(df['Data'], df['IMC'], 1)
         p = np.poly1d(z)
-        plt.plot(df['Peso'], p(df['Peso']), color='red')
+        plt.plot(df['Data'], p(df['Data']), color='red')
 
         plt.show()
 
@@ -129,10 +135,15 @@ while option != 9:
             print("\nO seu IMC é: \n", imc)
             salvar = input('\nSalvar dados? s/n: ')
             while str() in salvar:
-                if 's' in salvar or 'S' in salvar:
+                if 's' in salvar:
                     salvar_dados(nome, peso, altura)
                     break
-                elif 'n' in salvar or 'N' in salvar:
+                elif 'S' in salvar:
+                    salvar_dados(nome, peso, altura)
+                    break
+                if 'n' in salvar:
+                    break
+                elif 'N' in salvar:
                     break
                 else:
                     print("Opção inválida. Por favor, tente novamente.")
